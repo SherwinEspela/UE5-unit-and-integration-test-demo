@@ -14,6 +14,8 @@ public:
 	void RemoveScore(int Value);
 	int GetNumberOfStars();
 	int GetRewardPoints();
+	bool IsHighestScore(int PlayerScore);
+	void AddPlayerScore(int Value);
 
 public:
 	FORCEINLINE int GetTotalScore() const { return TotalScore; }
@@ -21,4 +23,5 @@ public:
 private:
 	int TotalScore = 0;
 	int TotalStars = 0;
+	TArray<int> PlayerScores;
 };

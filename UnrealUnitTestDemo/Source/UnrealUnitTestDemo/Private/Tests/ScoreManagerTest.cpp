@@ -101,3 +101,21 @@ bool FScoreManagerGetRewardsTest::RunTest(const FString& Parameters)
 
 	return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FScoreManagerCheckIfHighestScoresTest, "ScoreManager.Check if Player has the Highest Score",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter
+)
+
+bool FScoreManagerCheckIfHighestScoresTest::RunTest(const FString& Parameters)
+{
+	ScoreManager SM;
+	SM.AddPlayerScore(10);
+	SM.AddPlayerScore(20);
+	SM.AddPlayerScore(30);
+
+	bool bIsHighestScore = SM.IsHighestScore(100);
+	TestTrue(TEXT("Player should be the highest score"), bIsHighestScore == true);
+
+	return true;
+}

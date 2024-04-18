@@ -25,6 +25,7 @@ public:
 	FString GetTotalScore();
 	FString GetStars();
 	FString GetRewardPoints();
+	bool PlayerIsHighestScore() const;
 
 public:
 	FORCEINLINE void SetPlayerFirstName(FString Value) { PlayerFirstName = Value; }
@@ -39,8 +40,6 @@ protected:
 	FString PlayerFirstName;
 	FString PlayerLastName;
 	FString LevelStatus;
-	int NumberOfStars;
-	bool bIsHighScore;
 	bool bCanDisplayNextButton;
 	bool bCanShareToSocialMedia;
 	int Level;

@@ -79,3 +79,27 @@ bool FIntegrationGetRewardsTest::RunTest(const FString& Parameters)
 
 	return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FIntegrationIsHighestScoreTest, "IntegrationTests.ScoreManagerAndScoreWidgetModel.Check if Player gets the highest score",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter
+)
+
+bool FIntegrationIsHighestScoreTest::RunTest(const FString& Parameters)
+{
+	ScoreWidgetModel* ScoreWidget = new ScoreWidgetModel();
+	ScoreManager* SM = new ScoreManager();
+
+	ScoreWidget->SetScoreManager(SM);
+
+	SM->IsHighestScore(50);
+	TestTrue(TEXT("Expected Player should have the highest score"), ScoreWidget->PlayerIsHighestScore() == true);
+
+	SM->AddPlayerScore(10);
+	SM->AddPlayerScore(20);
+	SM->AddPlayerScore(30);
+	SM->IsHighestScore(90);
+	TestTrue(TEXT("Expected Player should have the highest score"), ScoreWidget->PlayerIsHighestScore() == true);
+
+	return true;
+}

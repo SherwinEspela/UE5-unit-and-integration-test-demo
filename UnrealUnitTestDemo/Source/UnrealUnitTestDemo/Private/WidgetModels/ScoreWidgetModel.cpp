@@ -54,3 +54,11 @@ FString ScoreWidgetModel::GetRewardPoints()
 	FString RewardPoints = FString::Printf(TEXT("Total Reward Points: %i"), SM->GetRewardPoints());
 	return RewardPoints;
 }
+
+bool ScoreWidgetModel::PlayerIsHighestScore() const
+{
+	check(SM);
+	int PlayerScore = SM->GetTotalScore();
+	bool bIsHighestSCore = SM->IsHighestScore(PlayerScore);
+	return bIsHighestSCore;
+}
