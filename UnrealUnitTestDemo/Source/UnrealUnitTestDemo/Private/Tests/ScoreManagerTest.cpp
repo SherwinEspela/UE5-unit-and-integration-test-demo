@@ -49,3 +49,55 @@ bool FScoreManagerStressTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("Expected total score should be 100 points"), TotalScore, 100);
 	return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FScoreManagerGetStarsTest, "ScoreManager.Get Number of Stars",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter
+)
+
+bool FScoreManagerGetStarsTest::RunTest(const FString& Parameters)
+{
+	ScoreManager SM;
+
+	SM.AddScore(10); // Total Score = 10
+	TestTrue(TEXT("Expected to have zero stars"), SM.GetNumberOfStars() == 0);
+
+	SM.AddScore(20); // Total Score = 30
+	TestTrue(TEXT("Expected to have 1 star"), SM.GetNumberOfStars() == 1);
+
+	SM.AddScore(40); // Total Score = 70
+	TestTrue(TEXT("Expected to have 2 stars"), SM.GetNumberOfStars() == 2);
+
+	SM.AddScore(25); // Total Score = 95
+	TestTrue(TEXT("Expected to have 3 stars"), SM.GetNumberOfStars() == 3);
+	
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(
+	FScoreManagerGetRewardsTest, "ScoreManager.Get Reward Points",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter
+)
+
+bool FScoreManagerGetRewardsTest::RunTest(const FString& Parameters)
+{
+	ScoreManager SM;
+
+	SM.AddScore(10); // Total Score = 10
+	TestTrue(TEXT("Expected to have zero stars"), SM.GetNumberOfStars() == 0);
+	TestTrue(TEXT("Expected to have 0 reward points"), SM.GetRewardPoints() == 0);
+
+	SM.AddScore(20); // Total Score = 30
+	TestTrue(TEXT("Expected to have 1 star"), SM.GetNumberOfStars() == 1);
+	TestTrue(TEXT("Expected to have 10 reward points"), SM.GetRewardPoints() == 10);
+
+	SM.AddScore(40); // Total Score = 70
+	TestTrue(TEXT("Expected to have 2 stars"), SM.GetNumberOfStars() == 2);
+	TestTrue(TEXT("Expected to have 20 reward points"), SM.GetRewardPoints() == 20);
+
+	SM.AddScore(25); // Total Score = 95
+	TestTrue(TEXT("Expected to have 3 stars"), SM.GetNumberOfStars() == 3);
+	TestTrue(TEXT("Expected to have 20 reward points"), SM.GetRewardPoints() == 30);
+
+	return true;
+}

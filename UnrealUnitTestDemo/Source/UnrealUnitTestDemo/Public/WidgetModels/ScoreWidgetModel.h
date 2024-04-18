@@ -9,6 +9,9 @@
  * which is similar to the View Model class in an
  * MVVM design pattern
  */
+
+class ScoreManager;
+
 class UNREALUNITTESTDEMO_API ScoreWidgetModel
 {
 public:
@@ -19,18 +22,22 @@ public:
 	FString GetFullPlayerName() const;
 	FString GetPlayerRank() const;
 	FString GetLevel();
+	FString GetTotalScore();
+	FString GetStars();
+	FString GetRewardPoints();
 
 public:
 	FORCEINLINE void SetPlayerFirstName(FString Value) { PlayerFirstName = Value; }
 	FORCEINLINE void SetPlayerLastName(FString Value) { PlayerLastName = Value; }
 	FORCEINLINE void SetPlayerRank(int Value) { Rank = Value; }
 	FORCEINLINE void SetLevel(int Value) { Level = Value; }
+	FORCEINLINE void SetScoreManager(ScoreManager* Value) { SM = Value; }
 
 protected:
+	ScoreManager* SM;
+
 	FString PlayerFirstName;
 	FString PlayerLastName;
-	FString PlayerScore;
-	FString PlayerReward;
 	FString LevelStatus;
 	int NumberOfStars;
 	bool bIsHighScore;

@@ -2,9 +2,11 @@
 
 
 #include "WidgetModels/ScoreWidgetModel.h"
+#include "Managers/ScoreManager.h"
 
 ScoreWidgetModel::ScoreWidgetModel()
 {
+	SM = new ScoreManager();
 }
 
 ScoreWidgetModel::~ScoreWidgetModel()
@@ -30,4 +32,25 @@ FString ScoreWidgetModel::GetLevel()
 	if (Level == 0) ++Level;
 	FString TextLevel = FString::Printf(TEXT("Level: %i"), Level);
 	return TextLevel;
+}
+
+FString ScoreWidgetModel::GetTotalScore()
+{
+	check(SM);
+	FString TotalScore = FString::Printf(TEXT("Total Score: %i"), SM->GetTotalScore());
+	return TotalScore;
+}
+
+FString ScoreWidgetModel::GetStars()
+{
+	check(SM);
+	FString TotalStars = FString::Printf(TEXT("Total Stars: %i"), SM->GetNumberOfStars());
+	return TotalStars;
+}
+
+FString ScoreWidgetModel::GetRewardPoints()
+{
+	check(SM);
+	FString RewardPoints = FString::Printf(TEXT("Total Reward Points: %i"), SM->GetRewardPoints());
+	return RewardPoints;
 }

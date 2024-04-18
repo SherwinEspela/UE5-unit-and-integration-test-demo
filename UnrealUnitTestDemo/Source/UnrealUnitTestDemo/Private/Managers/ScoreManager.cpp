@@ -19,3 +19,39 @@ void ScoreManager::RemoveScore(int Value)
 {
 	TotalScore -= Value;
 }
+
+int ScoreManager::GetNumberOfStars()
+{
+	if (TotalScore >= 90)
+	{
+		TotalStars = 3;
+	}
+	else if (TotalScore >= 50 && TotalScore < 90)
+	{
+		TotalStars = 2;
+	}
+	else if (TotalScore >= 20 && TotalScore < 50)
+	{
+		TotalStars = 1;
+	}
+
+	return TotalStars;
+}
+
+int ScoreManager::GetRewardPoints()
+{
+	switch (TotalStars)
+	{
+	case 3:
+		return 30;
+
+	case 2:
+		return 20;
+
+	case 1:
+		return 10;
+
+	default:
+		return 0;
+	}
+}

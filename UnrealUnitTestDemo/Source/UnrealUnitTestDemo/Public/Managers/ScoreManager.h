@@ -12,10 +12,13 @@ public:
 
 	void AddScore(int Value);
 	void RemoveScore(int Value);
+	int GetNumberOfStars();
+	int GetRewardPoints();
 
 public:
 	FORCEINLINE int GetTotalScore() const { return TotalScore; }
 
 private:
 	int TotalScore = 0;
+	int TotalStars = 0;
 };
