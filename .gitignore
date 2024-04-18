@@ -72,3 +72,9 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+UnrealUnitTestDemo/.vsconfig
+UnrealUnitTestDemo/UpgradeLog.htm
+UnrealUnitTestDemo/Binaries/
+UnrealUnitTestDemo/Config/
+UnrealUnitTestDemo/Intermediate/
+UnrealUnitTestDemo/Saved/
